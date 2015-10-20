@@ -3,6 +3,7 @@ gnip.user.name=YOUR_GNIP_USERNAME
 gnip.user.password=YOUR_GNIP_PASSWORD
 gnip.account.name=YOUR_GNPI_ACCOUNT_NAME
 gnip.product=YOUR_GNIP_PRODUCT
+gnip.publisher=YOUR_GNIP_PUBLISHER
 gnip.stream.label=YOUR_GNIP_STREAM_LABEL
 
 #AWS Account Information

@@ -4,11 +4,11 @@ import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSCredentialsProviderChain;
 import com.amazonaws.auth.InstanceProfileCredentialsProvider;
 import com.amazonaws.services.kinesis.AmazonKinesisClient;
+import com.gnip.core.endpoint.GnipStreamingEndpoint;
+import com.gnip.core.endpoint.RealTimeGnipStreamingEndpoint;
 import com.twitter.hbc.ClientBuilder;
 import com.twitter.hbc.core.Client;
 import com.twitter.hbc.core.Constants;
-import com.twitter.hbc.core.endpoint.EnterpriseStreamingEndpoint;
-import com.twitter.hbc.core.endpoint.RealTimeEnterpriseStreamingEndpoint;
 import com.twitter.hbc.core.processor.LineStringProcessor;
 import com.twitter.hbc.httpclient.auth.BasicAuth;
 import com.twitter.kinesis.metrics.HBCStatsTrackerMetric;
@@ -88,10 +88,11 @@ public class ConnectorApplication {
     client.connect();
   }
 
-  private EnterpriseStreamingEndpoint endpoint() {
+  private GnipStreamingEndpoint endpoint() {
     String account = this.environment.accountName();
+    String publisher = this.environment.publisher();
     String label = this.environment.streamLabel();
     String product = this.environment.product();
-    return new RealTimeEnterpriseStreamingEndpoint(account, product, label);
+    return new RealTimeGnipStreamingEndpoint(account, publisher, product, label);
   }
 }

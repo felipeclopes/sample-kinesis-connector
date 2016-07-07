@@ -36,11 +36,11 @@ public class Environment implements AWSCredentialsProvider {
   }
 
   public String userName() {
-    return props.getProperty("gnip.user.name");
+    return System.getenv("GNIP_USER_NAME");
   }
 
   public String userPassword() {
-    return props.getProperty("gnip.user.password");
+    return System.getenv("GNIP_USER_PASSWORD");
   }
 
   public String streamLabel() {
@@ -76,7 +76,7 @@ public class Environment implements AWSCredentialsProvider {
   }
 
   public String kinesisStreamName() {
-    return props.getProperty("aws.kinesis.stream.name");
+    return  System.getenv("AWS_KINESIS_STREAM_NAME");
   }
 
   public int shardCount() {
@@ -92,13 +92,13 @@ public class Environment implements AWSCredentialsProvider {
     AWSCredentials credentials = new AWSCredentials() {
       @Override
       public String getAWSAccessKeyId() {
-        String value = props.getProperty("aws.access.key");
+        String value = System.getenv("AWS_ACCESS_KEY_ID");
         return value;
       }
 
       @Override
       public String getAWSSecretKey() {
-        String value = props.getProperty("aws.secret.key");
+        String value = System.getenv("AWS_SECRET_ACCESS_KEY");
         return value;
       }
     };

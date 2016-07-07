@@ -15,15 +15,10 @@ This is an example app that takes in a Gnip Power Track and streams it into [AWS
   </br>
   Should look similar to this:
   ```bash
-    gnip.user.name=YOUR_GNIP_USERNAME
-    gnip.user.password=YOUR_GNIP_PASSWORD
     gnip.account.name=YOUR_GNIP_ACCOUNT_NAME
     gnip.product=YOUR_GNIP_PRODUCT
     gnip.stream.label=YOUR_GNIP_STREAM_LABEL
 
-    aws.access.key=YOUR_AWS_ACCESS_LEY
-    aws.secret.key=YOUR_AWS_SECRET_ACCEES_KEY
-    aws.kinesis.stream.name=YOUR_DESIRED_KINESIS_STREAM_LABEL
 
     #Application configuration parameters-
     ########################
@@ -38,8 +33,14 @@ This is an example app that takes in a Gnip Power Track and streams it into [AWS
     rate.limit=-1
     metric.report.interval.seconds=60
   ```
-  4. Build the project with Maven: ```cd ~/sample-kinesis-connector && mvn clean install```
-  5. Run the project with: ```java -jar target/connector-<version_no>-jar-with-dependencies.jar```
+  4. Build the project with docker: ```docker build -t meltwater/gnip_consumer .```
+  5. Run the project with: ```docker run -it -e GNIP_USER_NAME= -e GNIP_USER_PASSWORD= -e AWS_ACCESS_KEY_ID= -e AWS_SECRET_ACCESS_KEY= -e AWS_KINESIS_STREAM_NAME= --name gnip_consumer meltwater/gnip_consumer```
+
+
+
+
 
 ## Notes
 This sample has been tested on [Digital Ocean](https://www.digitalocean.com/) box with 1 Gb RAM. The ability for the application to produce to Kinesis is very sensitive to the quality the network connection. In testing, we were able to get a Gnip Decahose to flow quite well, only hitting the Kinesis rate limit a few times, all of which were recoverable errors.
+
+
